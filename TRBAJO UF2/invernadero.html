@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="invernadero.css">
+<!--Incluyo la biblioteca jQuery desde un CDN.-->    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    var primeraPlanta = "";
+    // Variable para guardar el array con los nombres y los tiempos de las plantas.
+    var plantas = [];
+    // Array para almacenar las imágenes de las plantas.
+    var imagenesPlantas = [
+                "flor animada.png", 
+                "Cactus suculenta.png", 
+                "Flor sencilla.png", 
+                "flor.png", 
+                "Florecita infantil.png", 
+                "Mini aloe vera.png",  
+            ];
+    $("#btn1").click(function(){
+        // Obtiene el valor del desplegable que indica el número de plantas que participan.
+        var numeroPlantas= $ ("#selectPlants").val();
+        // Genera un número aleatorio entre 1 y 10 para cada planta.
+        var tiempo1 = Math.floor(Math.random() * 10) + 1;
+        var tiempo2 = Math.floor(Math.random() * 10) + 1;
+        var tiempo3 = Math.floor(Math.random() * 10) + 1;
+        var tiempo4 = Math.floor(Math.random() * 10) + 1;
+        var tiempo5 = Math.floor(Math.random() * 10) + 1;
+        var tiempo6 = Math.floor(Math.random() * 10) + 1;
+        // Comprueba si la planta roja participa en la carrera.
+        if (numeroPlantas >= 1) {
+        $("#box").animate({height: "300px"},tiempo1 * 1000, function(){
+            if (primeraPlanta == "") {
+                // Si no hay ninguna planta que haya llegado antes, esta es la primera.
+                primeraPlanta = "roja";
+                // Muestra el aviso con el nombre de la primera planta.
+                alert("La primera planta en llegar es la " + primeraPlanta);
+            
+            }
+        });
+        // Añade la planta roja y su tiempo al array de plantas.
+        plantas.push({nombre: "roja", tiempo: tiempo1});
+    }
+        // Comprueba si la planta verde participa en la carrera.
+        if (numeroPlantas >= 2) {
+		$("#box2").animate({height: "300px"},tiempo2 * 1000,function(){
+            if (primeraPlanta == "") {
+                // Si no hay ninguna planta que haya llegado antes, esta es la primera.
+                primeraPlanta = "verde";
+                // Muestra el aviso con el nombre de la primera planta.
+                alert("La primera planta en llegar es la " + primeraPlanta);
+            }
+        });
+        // Añade la planta verde y su tiempo al array de plantas.
+        plantas.push({nombre: "verde", tiempo: tiempo2});
+    }
+        if (numeroPlantas >= 3) {
+		$("#box3").animate({height: "300px"},tiempo3 * 1000,function(){
+            if (primeraPlanta == "") {
+                // Si no hay ninguna planta que haya llegado antes, esta es la primera.
+                primeraPlanta = "azul";
+                // Muestra el aviso con el nombre de la primera planta.
+                alert("La primera planta en llegar es la " + primeraPlanta);
+            }
+        });
+        // Añade la planta azul y su tiempo al array de plantas.
+        plantas.push({nombre: "azul", tiempo: tiempo3});
+    }
+        if (numeroPlantas >= 4) {
+        $("#box4").animate({height: "300px"},tiempo4 * 1000,function(){
+             // Función que se ejecuta cuando termina la animación de la planta amarilla.
+             if (primeraPlanta == "") {
+                // Si no hay ninguna planta que haya llegado antes, esta es la primera.
+                primeraPlanta = "amarilla";
+                // Muestra el aviso con el nombre de la primera planta.
+                alert("La primera planta en llegar es la " + primeraPlanta);
+            }
+        });
+        // Añade la planta amarilla y su tiempo al array de plantas.
+        plantas.push({nombre: "amarilla", tiempo: tiempo4});
+    }
+        if (numeroPlantas >= 5) {
+		$("#box5").animate({height: "300px"},tiempo5 * 1000,function(){
+             // Función que se ejecuta cuando termina la animación de la planta morada.
+             if (primeraPlanta == "") {
+                // Si no hay ninguna planta que haya llegado antes, esta es la primera.
+                primeraPlanta = "morada";
+                // Muestra el aviso con el nombre de la primera planta.
+                alert("La primera planta en llegar es la " + primeraPlanta);
+            }
+        });
+        // Añade la planta morada y su tiempo al array de plantas.
+        plantas.push({nombre: "morada", tiempo: tiempo5});
+    }
+        if (numeroPlantas >= 6) {
+		$("#box6").animate({height: "300px"},tiempo6 * 1000,function(){
+            // Función que se ejecuta cuando termina la animación de la planta celeste.
+            if (primeraPlanta == "") {
+                // Si no hay ninguna planta que haya llegado antes, esta es la primera.
+                primeraPlanta = "celeste";
+                // Muestra el aviso con el nombre de la primera planta.
+                alert("La primera planta en llegar es la " + primeraPlanta);
+            }
+        });
+        // Añade la planta celeste y su tiempo al array de plantas.
+        plantas.push({nombre: "celeste", tiempo: tiempo6});
+    }
+        // Oculta el botón "Crecimiento" y muestra el botón "Secado"
+        $("#btn1").hide();
+        $("#btn2").show();
+    });
+    $("#btn2").click(function(){
+        $("#box").animate({height: "100px"});
+		$("#box2").animate({height: "100px"});
+		$("#box3").animate({height: "100px"});
+        $("#box4").animate({height: "100px"},);
+		$("#box5").animate({height: "100px"},);
+		$("#box6").animate({height: "100px"},);
+        // Oculta el botón "Secado" y muestra el botón "Crecimiento"
+        $("#btn2").hide();
+        $("#btn1").show();
+         // Reinicia el nombre de la primera planta que llega.
+         primeraPlanta = "";
+         // Vacía el array de plantas
+        plantas = [];
+        $("#btn3").click(function(){
+        // Ordena el array de plantas de menor a mayor tiempo usando una función comparadora.
+        plantas.sort(function(a, b) {
+        return a.tiempo - b.tiempo;
+        });
+        // Extrae solo los nombres de las plantas del array ordenado usando el método map().
+        var nombres = plantas.map(function(planta) {
+        return planta.nombre;
+        });
+        // Crea una cadena con los nombres de las plantas separados por comas usando el método join().
+        var cadena = nombres.join(", ");
+        // Muestra la cadena en un elemento HTML con id "tabla".
+        $("#tabla").html(cadena);
+});
+    
+        });
+});
+</script>
+<style>
+    /*Estilo para ocultar el botón Secado*/
+    #btn2 {
+        display: none; 
+    }
+</style>
+</head>
+<body>
+<!--Botones-->
+<button id="btn1">Crecimiento</button>
+<button id="btn2">Secado</button>
+<button id="btn3">Mostrar tabla</button>
+<select id="selectPlants">
+    <option value="1">1 planta</option>
+    <option value="2">2 plantas</option>
+    <option value="3">3 plantas</option>
+    <option value="4">4 plantas</option>
+    <option value="5">5 plantas</option>
+    <option value="6">6 plantas</option>
+</select>
+
+<!--Tope superior del invernadero-->
+<div id="greenhouseTop" style="position: absolute; top: 75px; left: 100px; width: 700px; height: 2px; background-color: red; z-index: 999;"></div>
+
+<!--Elementos visuales de las plantas.-->
+<div id="box" style="background:red; float:left; height:100px;width:100px;position :absolute ;margin:20px;bottom:210px;left :50px ">
+<img src="flor.png" alt="flor">
+</div>
+<div id="box2" style="background:green; float:center ; height:100px;width:100px;position:absolute ;margin:150px;bottom:80px;left :50px">
+<img src="flor.png" alt="flor">
+</div>
+<div id="box3" style="background:blue; float :right ; height:100px;width:100px;position:absolute ;margin:270px;bottom:-40px;left :50px">
+<img src="flor.png" alt="flor">
+</div>
+<div id="box4" style="background:rgb(166, 255, 0); float:left; height:100px;width:100px;position :absolute ;margin:20px;bottom:210px;left :425px ">
+    <img src="flor.png" alt="flor">
+    </div>
+    <div id="box5" style="background:rgb(128, 0, 79); float:center ; height:100px;width:100px;position:absolute ;margin:150px;bottom:80px;left :565px">
+    <img src="flor.png" alt="flor">
+    </div>
+    <div id="box6" style="background:rgb(255, 208, 0); float :right ; height:100px;width:100px;position:absolute ;margin:270px;bottom:-40px;left :310px">
+    <img src="flor.png" alt="flor">
+    </div>
+
+
+<!--Elemento vacíon donde se mostrará la tabla con los nombres de las plantas-->
+<div id="tabla"></div>
+
+
+
+</body>
+</html>
