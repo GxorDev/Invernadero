@@ -1,1 +1,1 @@
-# Invernadero
+# Invernadero de crecimiento aleatorio.
